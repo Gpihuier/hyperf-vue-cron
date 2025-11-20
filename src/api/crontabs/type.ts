@@ -11,6 +11,7 @@ export interface List {
   last_run_time: string
   next_run_time: string
   remark: string
+  custom_handler: string
   created_at: string
   updated_at: string
 }

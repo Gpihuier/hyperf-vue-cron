@@ -123,13 +123,14 @@ const loading = ref(false)
 
 // 定义表格列配置
 const tableColumns = ref([
-  { prop: 'name', label: '名称', width: 200 },
+  { prop: 'name', label: '名称', width: 150 },
   { prop: 'rule', label: 'Cron表达式', width: 100 },
   { prop: 'enable', label: '状态', width: 80 },
-  { prop: 'url', label: 'url', width: 200 },
+  { prop: 'url', label: 'url', width: 180 },
   { prop: 'last_run_time', label: '上次运行时间', width: 180 },
   { prop: 'next_run_time', label: '下次运行时间', width: 180 },
-  { prop: 'remark', label: '备注', width: 200, showTooltip: true },
+  { prop: 'custom_handler', label: '自定义任务处理方法', width: 180, showTooltip: true },
+  { prop: 'remark', label: '备注', width: 120, showTooltip: true },
   { prop: 'created_at', label: '创建时间', width: 180 },
 ])
 

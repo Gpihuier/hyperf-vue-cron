@@ -39,6 +39,10 @@
       />
     </el-form-item>
 
+    <el-form-item label="自定义任务处理方法" prop="custom_handler">
+      <el-input v-model="inner.custom_handler" />
+    </el-form-item>
+
     <el-form-item label="备注" prop="remark">
       <el-input v-model="inner.remark" />
     </el-form-item>
@@ -62,6 +66,7 @@ interface CrontabFormModel {
   method?: string
   routing_key?: string
   params?: string
+  custom_handler?: string
   remark?: string
 }
 
@@ -82,6 +87,7 @@ const inner = reactive<Required<CrontabFormModel>>({
   method: props.modelValue?.method ?? '',
   routing_key: props.modelValue?.routing_key ?? '',
   params: props.modelValue?.params ?? '',
+  custom_handler: props.modelValue?.custom_handler ?? '',
   remark: props.modelValue?.remark ?? '',
 })
 
@@ -96,6 +102,7 @@ watch(
     inner.method = v.method ?? ''
     inner.routing_key = v.routing_key ?? ''
     inner.params = v.params ?? ''
+    inner.custom_handler = v.custom_handler ?? ''
     inner.remark = v.remark ?? ''
   },
   { immediate: true, deep: true },
@@ -153,6 +160,7 @@ const rules = reactive<FormRules>({
   method: [{ required: true, message: '请选择请求方式', trigger: 'change' }],
   routing_key: [{ required: true, validator: validateRoutingKey, trigger: 'blur' }],
   params: [{ validator: validateParamsJson, trigger: 'blur' }],
+  custom_handler: [{ max: 64, message: '自定义任务处理方法 最多 64 个字符', trigger: 'blur' }],
   remark: [{ max: 255, message: '备注 最多 255 个字符', trigger: 'blur' }],
 })
 
@@ -177,6 +185,7 @@ const handleSubmit = () => {
       method: inner.method,
       routing_key: inner.routing_key,
       params: paramsObj,
+      custom_handler: inner.custom_handler,
       remark: inner.remark,
     }
 

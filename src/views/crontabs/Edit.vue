@@ -38,6 +38,7 @@ onMounted(async () => {
         ? res.params
         : JSON.stringify(res.params)
       : ''
+    initial.custom_handler = res.custom_handler ?? ''
     initial.remark = res.remark ?? ''
   } catch (e) {
     ElMessage.error('读取定时任务失败')
